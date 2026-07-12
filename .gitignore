@@ -5,3 +5,4 @@
 
 # Ignore common C build outputs
 a.out
+.idea/
