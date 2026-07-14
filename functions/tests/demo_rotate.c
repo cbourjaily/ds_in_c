@@ -1,10 +1,9 @@
 #include <stdio.h>
 
-#include "../include/rotate.h"
-#include "../util/array_utils.h"
+#include "rotate.h"
+#include "array_utils.h"
 
-static void print_rotate(int *arr, size_t arr_len, int step)
-{
+static void print_rotate(int *arr, size_t arr_len, int step) {
     printf("ARR Size: %zu ", arr_len);
 
     if (arr_len == 0) {

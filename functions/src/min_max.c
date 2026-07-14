@@ -6,8 +6,7 @@
  *              in a caller-provided output array.
  */
 
-void min_max(int *arr, size_t arr_len, int *mm)
-{
+void min_max(int *arr, size_t arr_len, int *mm) {
     int min = arr[0];
     int max = arr[0];
 

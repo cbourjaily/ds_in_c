@@ -1,9 +1,8 @@
 #include <assert.h>
 
-#include "../include/reverse.h"
+#include "reverse.h"
 
-int main(void)
-{
+int main(void) {
     int arr[] = {1, 2, 3, 4, 5};
 
     reverse(arr, 5);

@@ -1,10 +1,9 @@
 #include <stdio.h>
 
-#include "../include/min_max.h"
-#include "../util/array_utils.h"
+#include "min_max.h"
+#include "array_utils.h"
 
-int main(void)
-{
+int main(void) {
     printf("# min_max example 1\n");
 
     int arr1[] = {7, 8, 6, -5, 4};

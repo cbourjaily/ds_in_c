@@ -1,22 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "../include/sa_range.h"
-#include "../util/array_utils.h"
+#include "sa_range.h"
+#include "array_utils.h"
 
-static size_t size_array(int start, int end)
-{
+static size_t size_array(int start, int end) {
     return (size_t)(abs(end - start) + 1);
 }
 
-static void print_range(int *arr, size_t arr_len, int start, int end)
-{
+static void print_range(int *arr, size_t arr_len, int start, int end) {
     printf("Start: %d, End: %d, ", start, end);
     print_array(arr, arr_len);
 }
 
-int main(void)
-{
+int main(void) {
     printf("# sa_range examples\n");
 
     int start, end;
