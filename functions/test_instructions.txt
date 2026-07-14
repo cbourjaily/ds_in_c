@@ -1,0 +1,22 @@
+Functions Library Tests
+=======================
+
+Reverse
+--------
+gcc tests/demo_reverse.c src/reverse.c util/array_utils.c -o demo_reverse
+./demo_reverse
+
+Min/Max
+-------
+gcc tests/demo_min_max.c src/min_max.c util/array_utils.c -o demo_min_max
+./demo_min_max
+
+Rotate
+------
+gcc tests/demo_rotate.c src/rotate.c util/array_utils.c -o demo_rotate
+./demo_rotate
+
+SA Range
+--------
+gcc tests/demo_sa_range.c src/sa_range.c util/array_utils.c -o demo_sa_range
+./demo_sa_range
