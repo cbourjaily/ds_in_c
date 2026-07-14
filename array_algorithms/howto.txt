@@ -1,0 +1,42 @@
+Functions Library Tests
+=======================
+
+Reverse
+--------
+gcc -o demo_reverse tests/demo_reverse.c src/reverse.c util/array_utils.c -Iinclude -Iutil
+./demo_reverse
+
+Min/Max
+-------
+gcc -o demo_min_max tests/demo_min_max.c src/min_max.c util/array_utils.c -Iinclude -Iutil
+./demo_min_max
+
+Rotate
+------
+gcc -o demo_rotate tests/demo_rotate.c src/rotate.c util/array_utils.c -Iinclude -Iutil
+./demo_rotate
+
+SA Range
+--------
+gcc -o demo_sa_range tests/demo_sa_range.c src/sa_range.c util/array_utils.c -Iinclude -Iutil
+./demo_sa_range
+
+Is Sorted
+----------
+gcc -o test_is_sorted tests/test_is_sorted.c src/is_sorted.c util/array_utils.c -Iinclude -Iutil
+./test_is_sorted
+
+Is Sorted Demo
+--------------
+gcc -o demo_is_sorted tests/demo_is_sorted.c src/is_sorted.c util/array_utils.c -Iinclude -Iutil
+./demo_is_sorted
+
+gcc -o demo_find_mode tests/demo_find_mode.c src/find_mode.c util/array_utils.c -Iinclude -Iutil
+./demo_find_mode
+
+gcc -o demo_remove_duplicates tests/demo_remove_duplicates.c src/remove_duplicates.c util/array_utils.c -Iinclude -Iutil
+./demo_remove_duplicates
+
+gcc -o count_sort tests/demo_count_sort.c src/*.c util/*.c -Iinclude -Iutil
+
+
