@@ -1,0 +1,5 @@
+Dynamic Array
+-------------
+gcc -o demo_dynamic_array tests/demo_dynamic_array.c src/dynamic_array.c -Iinclude
+./demo_dynamic_array
+

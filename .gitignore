@@ -1,8 +1,19 @@
-# Ignore all compiled binaries
+# Compiled objects 
 *.o
+
+# Executables
 *.out
 *.exe
-
-# Ignore common C build outputs
 a.out
+
+# Editor
+*.swp
+*~
+
+# IDE
 .idea/
+
+# Misc
+*.pdf
+local_compile.txt
+
