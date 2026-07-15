@@ -22,7 +22,7 @@ gcc -o demo_sa_range tests/demo_sa_range.c src/sa_range.c util/array_utils.c -Ii
 ./demo_sa_range
 
 Is Sorted
-----------
+---------
 gcc -o test_is_sorted tests/test_is_sorted.c src/is_sorted.c util/array_utils.c -Iinclude -Iutil
 ./test_is_sorted
 
@@ -31,12 +31,28 @@ Is Sorted Demo
 gcc -o demo_is_sorted tests/demo_is_sorted.c src/is_sorted.c util/array_utils.c -Iinclude -Iutil
 ./demo_is_sorted
 
+Find Mode
+---------
 gcc -o demo_find_mode tests/demo_find_mode.c src/find_mode.c util/array_utils.c -Iinclude -Iutil
 ./demo_find_mode
 
+Remove Duplicates
+-----------------
 gcc -o demo_remove_duplicates tests/demo_remove_duplicates.c src/remove_duplicates.c util/array_utils.c -Iinclude -Iutil
 ./demo_remove_duplicates
 
-gcc -o count_sort tests/demo_count_sort.c src/*.c util/*.c -Iinclude -Iutil
+Count Sort
+----------
+gcc -o demo_count_sort tests/demo_count_sort.c \
+    src/count_sort.c \
+    src/min_max.c \
+    src/is_sorted.c \
+    src/reverse.c \
+    util/array_utils.c \
+    -Iinclude -Iutil
+./demo_count_sort
 
-
+Sorted Squares
+--------------
+gcc -o demo_sorted_squares tests/demo_sorted_squares.c src/sorted_squares.c -Iinclude
+./demo_sorted_squares
