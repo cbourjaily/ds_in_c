@@ -30,10 +30,10 @@ bool da_insert_at_index(DynamicArray *da, size_t index, int value);       //
 void da_remove_at_index(DynamicArray *da, size_t index);                  //
 
 /* Higher-level Operations */
-DynamicArray *da_slice(const DynamicArray *da, size_t start, size_t length);
-void da_merge(DynamicArray *dest, const DynamicArray *src);
-DynamicArray *da_map(const DynamicArray *da);
-DynamicArray *da_filter(const DynamicArray *da);
-int da_reduce(const DynamicArray *da);
+DynamicArray *da_slice(const DynamicArray *da, size_t start, size_t length); //
+void da_merge(DynamicArray *dest, const DynamicArray *src);                  //
+DynamicArray *da_map(const DynamicArray *da, int (*func)(int));
+DynamicArray *da_filter(const DynamicArray *da, bool (*pred)(int));
+int da_reduce(const DynamicArray *da, int (*func)(int, int), int initial);
 
 #endif

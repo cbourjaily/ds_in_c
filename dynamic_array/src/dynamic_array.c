@@ -153,3 +153,30 @@ void da_remove_at_index(DynamicArray *da, size_t index) {
 	}
 }
 
+/* Return a new dynamic array containing length elements,
+ * starting at index start.
+ */
+DynamicArray *da_slice(const DynamicArray *da, size_t start, size_t length) {
+	DynamicArray *new_da = da_create();
+	if (new_da == NULL)
+		return NULL;
+
+	for (size_t i = start; i < (start + length); i++) {
+		da_append(new_da, da_get(da, i));
+		}
+	return new_da;
+}
+/* Append all elements from src to the end of dest. */
+void da_merge(DynamicArray *dest, const DynamicArray *src) {
+	size_t size = da_size(src);
+	for (size_t i = 0; i < size; i++) {
+		// Safety check for if malloc should fail in append
+		if (!da_append(dest, da_get(src, i)))
+			return;
+	}
+}
+
+
+DynamicArray *da_map(const DynamicArray *da, int (*func)(int)) {
+
+}
