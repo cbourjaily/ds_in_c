@@ -86,23 +86,23 @@ bool da_resize(DynamicArray *da, size_t new_capacity) {
 		}
 	}
 
-    size_t size = da_size(da);
+	size_t size = da_size(da);
 
-    int *new_data = malloc(new_capacity * sizeof(int));
+	int *new_data = malloc(new_capacity * sizeof(int));
 
-    if (new_data == NULL)
-        return false;
+	if (new_data == NULL)
+		return false;
 
-    for (size_t i = 0; i < size; i++) {
-        new_data[i] = da->data[i];
-    }
+	for (size_t i = 0; i < size; i++) {
+		new_data[i] = da->data[i];
+	}
 
-    free(da->data);
+	free(da->data);
 
-    da->data = new_data;
-    da->capacity = new_capacity;
+	da->data = new_data;
+	da->capacity = new_capacity;
 
-    return true;
+	return true;
 }
 
 /* Append a new value to the end of the dynamic array.
@@ -163,9 +163,10 @@ DynamicArray *da_slice(const DynamicArray *da, size_t start, size_t length) {
 
 	for (size_t i = start; i < (start + length); i++) {
 		da_append(new_da, da_get(da, i));
-		}
+	}
 	return new_da;
 }
+
 /* Append all elements from src to the end of dest. */
 void da_merge(DynamicArray *dest, const DynamicArray *src) {
 	size_t size = da_size(src);
@@ -176,7 +177,29 @@ void da_merge(DynamicArray *dest, const DynamicArray *src) {
 	}
 }
 
-
+/* Return a new dynamic array by applying func to each element. */
 DynamicArray *da_map(const DynamicArray *da, int (*func)(int)) {
+	DynamicArray *this_da = da_create();
+	size_t size = da_size(da);
 
+	for (size_t i = 0; i < size; i++) {
+		int a_val = func(da_get(da, i));
+		da_append(this_da, a_val);
+	}
+	return this_da;
 }
+
+/* Return a new dynamic array containing the elements for which pred returns true. */
+DynamicArray *da_filter(const DynamicArray *da, bool (*pred)(int)) {
+	DynamicArray *this_da = da_create();
+	size_t size = da_size(da);
+
+	for (size_t i = 0; i < size; i++) {
+		int a_val = da_get(da, i);
+
+		if (pred(a_val))
+			da_append(this_da, a_val);
+	}	
+	return this_da;
+}
+
