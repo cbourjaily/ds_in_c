@@ -203,3 +203,23 @@ DynamicArray *da_filter(const DynamicArray *da, bool (*pred)(int)) {
 	return this_da;
 }
 
+/* Reduce the array to a single value by repeatedly applying func,
+ * starting with the initial accumulator value.
+ */
+int da_reduce(const DynamicArray *da, int (*func)(int, int), int initial) {
+	size_t size = da_size(da);
+	if (size == 0) 
+		return initial;
+
+	int accum = initial;
+	for (size_t i = 0; i < size; i++) {
+		accum = func(accum, da_get(da, i));
+	}
+	return accum;
+}
+
+
+
+
+
+

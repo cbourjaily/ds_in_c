@@ -1,9 +1,12 @@
-#include <stdio.h>    // for abs()
-#include <stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>	// for abs()
+#include <limits.h>	// for INT_MIN and INT_MAX
 
 #include "dynamic_array.h"
 
-// Helpers for higher-level operations
+/* Helpers for higher-level operations */
+
+// Helpers for map demos
 int square(int x) {
 	return x * x;
 }
@@ -16,6 +19,7 @@ int negate(int x) {
 	return -x;
 }
 
+// Helpers for filter demos
 bool is_even(int x) {
 	return x % 2 == 0;
 }
@@ -41,6 +45,23 @@ bool is_prime(int n) {
 			return false;
 	}
 	return true;
+}
+
+// Helpers for reduce demos
+int sum(int acc, int x) {
+	return acc + x;
+}
+
+int product(int acc, int x) {
+	return acc * x;
+}
+
+int max(int acc, int x) {
+	return acc > x ? acc : x;
+}
+
+int min(int acc, int x) {
+	return acc < x ? acc : x;
 }
 
 
@@ -228,7 +249,7 @@ int main(void) {
 	for (int i = 0; i < 8; i++) {
 		if (!da_append(my_da5, i)) {
 			printf("da_append() failed.\n");
-			da_destroy(my_da);
+			da_destroy(my_da5);
 			return 1;
 		}
 	}
@@ -318,7 +339,7 @@ int main(void) {
 		else {		
 			if (!da_append(this_da5, i)) {
 				printf("da_append() failed.\n");
-				da_destroy(this_da);
+				da_destroy(this_da5);
 				return 1;
 			}
 		}
@@ -383,7 +404,7 @@ int main(void) {
 	for (int i = 0; i < 66; i++) {
 		if (!da_append(this_da6, (i - 5))) {
 			printf("da_append() failed.\n");
-			da_destroy(my_da);
+			da_destroy(this_da6);
 			return 1;
 		}
 	}
@@ -399,6 +420,155 @@ int main(void) {
 	printf("Result:\n");
 	print_da(that_da5);
 	printf("\n\n");
+	
+	
+	printf("Test: da_reduce()\n");
+	printf("----------------------------------------\n");
+	
+	int reduction;
+	DynamicArray *a_da = da_create();
+
+	// int da_reduce(const DynamicArray *da, int (*func)(int, int), int initial);
+	
+	printf("Round 1:\n");
+	printf("Reduce: sum()\n");
+	printf("Starting array:\n");
+	print_da(a_da);
+	printf("\n\n");
+	
+	reduction = da_reduce(a_da, sum, 0);
+
+	printf("Result:\n");
+	printf("%d\n", reduction);
+	printf("\n");
+
+
+	for (int i = 1; i < 11; i++) {
+		if (i % 3 == 0) {
+			if (!da_append(a_da, negate(i))) {
+				printf("da_append() failed.\n");
+				da_destroy(a_da);
+				return 1;
+			}
+		}
+		else {		
+			if (!da_append(a_da, i)) {
+				printf("da_append() failed.\n");
+				da_destroy(a_da);
+				return 1;
+			}
+		}
+	}
+
+	
+	printf("Round 2:\n");
+	printf("Reduce: sum()\n");
+	printf("Starting array:\n");
+	print_da(a_da);
+	printf("\n\n");
+	
+	reduction = da_reduce(a_da, sum, 0);
+
+	printf("Result:\n");
+	printf("%d\n", reduction);
+	printf("\n");
+	
+	DynamicArray *a_da2 = da_create();
+
+	for (int i = 0; i < 11; i++) {
+		if (!da_append(a_da2, (i - 5))) {
+			printf("da_append() failed.\n");
+			da_destroy(a_da2);
+			return 1;
+		}
+	}
+
+	printf("Round 3:\n");
+	printf("Reduce: sum()\n");
+	printf("Starting array:\n");
+	print_da(a_da2);
+	printf("\n\n");
+	
+	reduction = da_reduce(a_da2, sum, 0);
+
+	printf("Result:\n");
+	printf("%d\n", reduction);
+	printf("\n");
+	
+	
+	DynamicArray *a_da3 = da_create();
+	
+	for (int i = 1; i < 6; i++) {
+		if (!da_append(a_da3, i)) {
+			printf("da_append() failed.\n");
+			da_destroy(a_da3);
+			return 1;
+		}
+	}	
+	
+	printf("Round 4:\n");
+	printf("Reduce: product()\n");
+	printf("Starting array:\n");
+	print_da(a_da3);
+	printf("\n\n");
+	
+	reduction = da_reduce(a_da3, product, 1);
+
+	printf("Result:\n");
+	printf("%d\n", reduction);
+	printf("\n");
+	
+
+	printf("Round 5:\n");
+	printf("Reduce: product()\n");
+	printf("Starting array:\n");
+	print_da(a_da);
+	printf("\n\n");
+	
+	reduction = da_reduce(a_da, product, 1);
+
+	printf("Result:\n");
+	printf("%d\n", reduction);
+	printf("\n");
+	
+	
+	printf("Round 6:\n");
+	printf("Reduce: product()\n");
+	printf("Starting array:\n");
+	print_da(a_da2);
+	printf("\n\n");
+	
+	reduction = da_reduce(a_da2, product, 1);
+
+	printf("Result:\n");
+	printf("%d\n", reduction);
+	printf("\n");
+	
+
+	printf("Round 7:\n");
+	printf("Reduce: max()\n");
+	printf("Starting array:\n");
+	print_da(a_da2);
+	printf("\n\n");
+	
+	reduction = da_reduce(a_da2, max, INT_MIN);
+
+	printf("Result:\n");
+	printf("%d\n", reduction);
+	printf("\n");
+	
+
+	printf("Round 8:\n");
+	printf("Reduce: min()\n");
+	printf("Starting array:\n");
+	print_da(a_da2);
+	printf("\n\n");
+	
+	reduction = da_reduce(a_da2, min, INT_MAX);
+
+	printf("Result:\n");
+	printf("%d\n", reduction);
+	printf("\n");
 
 
 	da_destroy(my_da);
@@ -417,6 +587,9 @@ int main(void) {
 	da_destroy(that_da3);
 	da_destroy(that_da4);
 	da_destroy(that_da5);
+	da_destroy(a_da);
+	da_destroy(a_da2);
+	da_destroy(a_da3);
 
 	return 0;
 }
