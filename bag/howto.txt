@@ -1,0 +1,6 @@
+Dynamic Array
+-------------
+gcc -o demo_bag tests/demo_bag.c src/bag.c ../dynamic_array/src/dynamic_array.c \
+-Iinclude -I../dynamic_array/include
+./demo_bag
+
